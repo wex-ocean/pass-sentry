@@ -282,3 +282,30 @@ generateBtn.addEventListener("click", () => {
   updateStrength(generated);
   copyBtn.disabled = false;
 });
+
+// Copy to clipboard
+copyBtn.addEventListener("click", async () => {
+  const value = passwordInput.value;
+  if (!value) return;
+
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      await navigator.clipboard.writeText(value);
+    } else {
+      // Fallback for older browsers
+      passwordInput.select();
+      document.execCommand("copy");
+      window.getSelection().removeAllRanges();
+    }
+
+    const originalText = copyBtn.textContent;
+    copyBtn.textContent = "Copied!";
+    copyBtn.classList.add("copied");
+    setTimeout(() => {
+      copyBtn.textContent = originalText;
+      copyBtn.classList.remove("copied");
+    }, 1800);
+  } catch (err) {
+    console.error("Failed to copy password:", err);
+  }
+});

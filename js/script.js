@@ -237,3 +237,48 @@ passwordInput.addEventListener("input", () => {
   updateStrength(value);
   copyBtn.disabled = value.length === 0;
 });
+
+// Password generator
+function generateStrongPassword() {
+  const length = 14; // default generated length
+  const lowers = "abcdefghijklmnopqrstuvwxyz";
+  const uppers = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const numbers = "0123456789";
+  const specials = "!@#$%^&*";
+
+  const allChars = lowers + uppers + numbers + specials;
+
+  let passwordChars = [];
+
+  // Ensure at least one of each category
+  passwordChars.push(lowers[Math.floor(Math.random() * lowers.length)]);
+  passwordChars.push(uppers[Math.floor(Math.random() * uppers.length)]);
+  passwordChars.push(numbers[Math.floor(Math.random() * numbers.length)]);
+  passwordChars.push(specials[Math.floor(Math.random() * specials.length)]);
+
+  // Fill remaining characters
+  for (let i = passwordChars.length; i < length; i++) {
+    passwordChars.push(allChars[Math.floor(Math.random() * allChars.length)]);
+  }
+
+  // Shuffle characters (Fisher–Yates)
+  for (let i = passwordChars.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [passwordChars[i], passwordChars[j]] = [passwordChars[j], passwordChars[i]];
+  }
+
+  return passwordChars.join("");
+}
+
+generateBtn.addEventListener("click", () => {
+  const generated = generateStrongPassword();
+  passwordInput.value = generated;
+  if (passwordInput.getAttribute("type") !== "password") {
+    // Keep visible state consistent
+    togglePasswordBtn.classList.add("visible");
+    togglePasswordBtn.setAttribute("aria-pressed", "true");
+    togglePasswordBtn.setAttribute("aria-label", "Hide password");
+  }
+  updateStrength(generated);
+  copyBtn.disabled = false;
+});

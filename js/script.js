@@ -309,3 +309,6 @@ copyBtn.addEventListener("click", async () => {
     console.error("Failed to copy password:", err);
   }
 });
+
+// Initialize on load
+updateStrength("");

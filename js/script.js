@@ -218,3 +218,15 @@ function updateTips(flags) {
     tipsEl.textContent = "Tips: " + suggestions.join(" ");
   }
 }
+
+// Toggle password visibility
+togglePasswordBtn.addEventListener("click", () => {
+  const isPassword = passwordInput.getAttribute("type") === "password";
+  passwordInput.setAttribute("type", isPassword ? "text" : "password");
+  togglePasswordBtn.classList.toggle("visible", isPassword);
+  togglePasswordBtn.setAttribute("aria-pressed", isPassword ? "true" : "false");
+  togglePasswordBtn.setAttribute(
+    "aria-label",
+    isPassword ? "Hide password" : "Show password"
+  );
+});

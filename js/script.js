@@ -230,3 +230,10 @@ togglePasswordBtn.addEventListener("click", () => {
     isPassword ? "Hide password" : "Show password"
   );
 });
+
+// Real-time strength checking
+passwordInput.addEventListener("input", () => {
+  const value = passwordInput.value;
+  updateStrength(value);
+  copyBtn.disabled = value.length === 0;
+});

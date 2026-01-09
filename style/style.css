@@ -338,3 +338,48 @@ body {
   font-size: 0.85rem;
   color: #d1d5db;
 }
+
+/* Responsive */
+
+@media (min-width: 768px) {
+  .card {
+    padding: 1.9rem 1.7rem 2.1rem;
+    border-radius: 18px;
+  }
+
+  .card h1 {
+    font-size: 1.5rem;
+  }
+
+  #password {
+    font-size: 0.98rem;
+  }
+
+  .requirement {
+    font-size: 0.9rem;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    max-width: 100%;
+    padding: 1.2rem 1rem 1.6rem;
+    border-radius: 14px;
+  }
+
+  .card h1 {
+    font-size: 1.2rem;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}

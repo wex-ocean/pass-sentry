@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Password Strength Checker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+  <main class="wrapper">
+    <section class="card">
+      <h1>Password Strength Checker</h1>
+
+      <div class="input-group">
+        <label for="password">Password</label>
+        <div class="password-wrapper">
+          <input
+            type="password"
+            id="password"
+            placeholder="Enter your password"
+            autocomplete="new-password"
+            autofocus
+          />
+
+          <button
+            type="button"
+            id="togglePassword"
+            class="toggle-password"
+            aria-label="Show password"
+            aria-pressed="false"
+          >
+            <!-- Eye (open) -->
+            <svg
+              class="icon-eye icon-eye-open"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+              <circle
+                cx="12"
+                cy="12"
+                r="3"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></circle>
+            </svg>
+
+            <!-- Eye (closed) -->
+            <svg
+              class="icon-eye icon-eye-closed"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="M3 3l18 18"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+              <path
+                d="M10.58 10.58A3 3 0 0 0 9 12a3 3 0 0 0 3 3 3 3 0 0 0 1.42-.38"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+              <path
+                d="M9.88 5.51A9.73 9.73 0 0 1 12 5c5 0 9.27 3.11 11 7a17.8 17.8 0 0 1-2.06 3.11M6.18 6.18A18 18 0 0 0 1 12a17.8 17.8 0 0 0 4.11 5.11A10.2 10.2 0 0 0 9.9 18.5"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="strength-meter">
+        <div class="strength-bar-background">
+          <div id="strengthBar" class="strength-bar"></div>
+        </div>
+        <span id="strengthText" class="strength-text">Strength: -</span>
+      </div>
+
+      <ul class="requirements">
+        <li id="req-length" class="requirement unmet">
+          <span class="icon status-icon">✖</span>
+          <span>Minimum length of 8 characters</span>
+        </li>
+        <li id="req-lower" class="requirement unmet">
+          <span class="icon status-icon">✖</span>
+          <span>At least one lowercase letter (a–z)</span>
+        </li>
+        <li id="req-upper" class="requirement unmet">
+          <span class="icon status-icon">✖</span>
+          <span>At least one uppercase letter (A–Z)</span>
+        </li>
+        <li id="req-number" class="requirement unmet">
+          <span class="icon status-icon">✖</span>
+          <span>At least one number (0–9)</span>
+        </li>
+        <li id="req-special" class="requirement unmet">
+          <span class="icon status-icon">✖</span>
+          <span>At least one special character (! @ # $ % ^ &amp; *)</span>
+        </li>
+        <li id="req-no-spaces" class="requirement unmet critical">
+          <span class="icon status-icon">✖</span>
+          <span>No spaces</span>
+        </li>
+        <li id="req-long" class="requirement unmet bonus">
+          <span class="icon status-icon">✖</span>
+          <span>12+ characters (bonus)</span>
+        </li>
+      </ul>
+
+      <div class="actions">
+        <button type="button" id="generatePassword" class="btn btn-primary">
+          Generate strong password
+        </button>
+        <button
+          type="button"
+          id="copyPassword"
+          class="btn btn-secondary"
+          disabled
+        >
+          Copy to clipboard
+        </button>
+      </div>
+
+      <p id="crackTime" class="crack-time">Estimated crack time: N/A</p>
+      <p
+        id="commonWarning"
+        class="common-warning"
+        aria-live="polite"
+      ></p>
+      <p id="tips" class="tips">
+        Tip: Use a mix of letters, numbers, and symbols for a stronger password.
+      </p>
+    </section>
+  </main>
+
+</body>
+</html>
